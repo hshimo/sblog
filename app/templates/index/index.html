@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}HOME{% endblock %}
+{% block navigation %}
+<li class="active"><a href="/">HOME</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h2>Home</h2>
+    </div>
+
+    <h2>Latest Blog Posts</h2>
+    {% for post in post_list %}
+        <h3><a href="/post/{{ post.id|e }}">{{ post.title|e }}</a></h3>
+        <div>
+            <span>{{ post.post_date|e }}</span>
+        </div>
+    {% endfor %}
+{% endblock %}
+

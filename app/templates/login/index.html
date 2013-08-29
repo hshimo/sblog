@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}Login{% endblock %}
+{% block navigation %}
+<li><a href="/">HOME</a></li>
+<li class="active"><a href="/login">Login</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h2>Login</h2>
+    </div>
+
+    {% if errors.login %}
+    <div class="alert alert-error">
+        <a class="close" data-dismiss="alert">Å~</a>
+        {{ errors.login|e }}
+    </div>
+    {% endif %}
+
+    {% if flash['errors.login'] %}
+    <div class="alert alert-error">
+        <a class="close" data-dismiss="alert">Å~</a>
+        {{ flash['errors.login']|e }}
+    </div>
+    {% endif %}
+
+
+    <form class="well" action="/login" method="post">
+        <label>User ID:</label>
+        {% if errors.user_id %}
+        <div class="alert alert-error">
+            {{ errors.user_id |e }}
+        </div>
+        {% endif %}
+        <input type="text" name="user_id" class="span3" placeholder="input your user id..." value="{{ user_id|e }}">
+        <span class="help-inline">3-15 characters.</span>
+
+        <label>Password:</label>
+        {% if errors.password %}
+        <div class="alert alert-error">
+            {{ errors.password |e }}
+        </div>
+        {% endif %}
+        <input type="text" name="password" class="span3" placeholder="input your password..." value="{{ password|e }}">
+        <span class="help-inline">4-12 characters.</span>
+    <!--
+        <label class="checkbox">
+            <input type="checkbox" name="remember_me"> remember 30 days
+        </label>
+     -->
+        <br />
+        <button type="submit" class="btn btn-primary btn-large">  Login  </button>
+    </form>
+
+{% endblock %}
+
+
+

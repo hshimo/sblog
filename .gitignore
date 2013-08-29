@@ -1,0 +1,10 @@
+.buildpath
+.externalToolBuilders/
+.project
+.settings/
+/vendor/
+/logs/*
+!/logs/README.md
+/templates/cache/*
+!/templates/cache/README.md
+.DS_STORE

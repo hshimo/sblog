@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}Logout{% endblock %}
+{% block navigation %}
+<li><a href="/">HOME</a></li>
+<li class="active"><a href="/logout">Logout</a></li>
+{% endblock %}
+
+{% block content %}
+    <h2>Logout</h2>
+
+    {% if error.login %}
+    <div class="alert">{{ error.login |e }}</div>
+    {% endif %}
+
+    <div>
+        <p>You successfully logged out.</p>
+        <p><a href="/">HOME</a></p>
+    </div>
+
+{% endblock %}
+
+
+

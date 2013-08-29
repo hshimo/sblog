@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ post_one.title}}{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h2>Blog Title: {{ one_post.title |e }}</h2>
+        <span>{{ one_post.post_date |e }}</span>
+    </div>
+
+    <div class="well">
+        {{ one_post.content |e|nl2br }}
+    </div>
+
+{% if comments %}
+<h2 id="comment-top">Comments</h2>
+<div class="well">
+
+    {% for comment in comments %}
+        <div>
+            <span>Name: {{ comment.author |e }}: Email: {{ comment.author_email |e }}</span><br />
+        <span>Comment: </span>
+        <div>{{ comment.content |e|nl2br }}</div>
+        </div>
+        <hr />
+    {% endfor %}
+
+</div>
+{% else %}
+<div class="well">no comments</div>
+{% endif %}
+
+
+
+<div class="well">
+<form class="form-horizontal" action="/post/{{ one_post.id |e }}/comment" method="post">
+    <fieldset>
+        <legend>Write a comment:</legend>
+        <div class="control-group">
+            <label class="control-label" for="input01">Name: </label>
+            <div class="controls">
+                <div class="alert-error">{{ flash['error.name'] }}</div>
+                <input type="text" class="input-xlarge" id="name" name="name" value="{{ flash['comment.name'] }}">
+                <p class="help-block">(optional) nickname</p>
+            </div>
+        </div>
+        <div class="control-group">
+
+            <label class="control-label" for="input02">E-mail: </label>
+            <div class="controls">
+                <div class="alert-error">{{ flash['error.email'] }}</div>
+                <input type="text" class="input-xlarge" id="email" name="email" value="{{ flash['comment.email'] }}">
+                <p class="help-block">(optional) email address</p>
+            </div>
+        </div>
+        <div class="control-group">
+
+            <label class="control-label" for="input02">Comment: </label>
+
+            <div class="controls">
+                <div class="alert-error">{{ flash['error.comment'] }}</div>
+                <textarea class="input-large" id="comment" name="comment" rows="5" required>{{ flash['comment.comment'] }}</textarea>
+                <p class="help-block">No HTML tags allowed</p>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Post a comment</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+    </fieldset>
+</form>
+</div>
+
+
+{% endblock %}
+
+

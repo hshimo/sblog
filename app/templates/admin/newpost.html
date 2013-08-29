@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}create a new blog post{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h2>New blog post</h2>
+    </div>
+
+<div class="well">
+<form class="form-horizontal" action="/admin/newpost" method="post">
+    <fieldset>
+        <legend>New Post:</legend>
+        <div class="control-group">
+            <label class="control-label" for="title">Title: </label>
+            <div class="controls">
+                <div class="alert-error">{{ flash['error.title'] }}</div>
+                <input type="text" class="input-xlarge" id="title" name="title" size="40" value="{{ flash['post.title'] }}" autofocus required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="content">Content: </label>
+            <div class="controls">
+                <div class="alert-error">{{ flash['error.content'] }}</div>
+                <textarea class="input-large" id="content" name="content" cols="60" rows="30">{{ flash['post.content'] }}</textarea>
+                <p class="help-block">No HTML tags allowed</p>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit a new post</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+    </fieldset>
+</form>
+</div>
+
+
+{% endblock %}
+
+
